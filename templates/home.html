@@ -1,0 +1,177 @@
+<html5>
+  <head>
+    <title>Weather Dashboard</title>
+    <!--<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='static/style/home.css')}}">-->
+    <!-- CSS only -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+
+  <body>
+    
+
+
+    <video autoplay muted loop id="video">
+      <source src="{{ url_for('static', filename='videos/cloud.mp4') }}" type="video/mp4">
+    
+    </video>
+    
+    {% include 'navbar.html' %}
+
+
+    <div class="container" id="container">
+
+      <br />
+      <br />
+      <div class="">
+        <div class="container">
+          <h2 align="center">Weather Dashboard in flask</h2>
+
+          <form
+            align="center"
+            action="{{url_for('render_results')}}"
+            method="POST"
+          >
+            <div class="form-group">
+              <label>Location Name:<b><h4><span class="badge badge-pill badge-warning">{{city_name}}</span></b></h4></label>
+              <input
+                class="form-control mb-2"
+                align="center"
+                type="text"
+                name="city"
+                placeholder="Enter City Name,,,"
+                
+                pattern="[A-Za-z]+"
+                title="Invalid Input"
+              /><br />
+              <input style=" border-radius: 15px;" 
+                align="center"
+                class="btn btn-info btn-primary btn-lg btn-block"
+                type="submit"
+                value="Submit"
+                
+              />
+           <!--  <a href="https://www.google.com/search?q={{city_name}}&source=lnms&tbm=isch&sa=X&ved=2ahUKEwi-1bq4_I3sAhUwpIsKHQPeBT4Q_AUoAXoECCgQAw&biw=1294&bih=637" style=" border-radius: 15px;" class="btn btn-info btn-primary btn-lg btn-block">{{city_name}} On Pictures</a>
+              <a href="https://www.google.com/maps/place/{{city_name}},+Afghanistan/@34.5539525,68.9175334,10z/data=!3m1!4b1!4m5!3m4!1s0x38d1694c3c1e6d49:0xebdf473578214429!8m2!3d34.5553494!4d69.207486" style=" border-radius: 15px;" class="btn btn-info btn-primary btn-lg btn-block">{{city_name}} On Google Map</a>
+               <a href="https://en.wikipedia.org/wiki/{{city_name}}" style=" border-radius: 15px;" class="btn btn-info btn-primary btn-lg btn-block">{{city_name}} On Wikipedia</a>
+               --> 
+             
+            </div>
+
+
+          </form>
+        </div>
+      </div>
+
+      <div class="container" id="container2">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card" id="card">
+              
+              <div class="card-body">
+                <h5 class="card-title"><span class="badge badge-pill badge-info">{{dt}}</span></h5>
+
+               <img
+                src="http://openweathermap.org/img/w/{{icon}}.png"
+                alt="image"
+              />
+                <!--<h3 align="center">location {{location}}</h3>-->
+                
+                <h5 style="text-align: center">Temperature :<span class="badge badge-pill badge-warning"> {{temp}}F</span></h5>
+                <h5 style="text-align: center">Weather :<span class="badge badge-pill badge-success">{{weather}}</span></h5>
+                <h5 style="text-align: center">Humidity :<span class="badge badge-pill badge-danger">{{feels_like}}%</span></h5>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card" id="card">
+              <div class="card-body">
+              <h5 class="card-title"><span class="badge badge-pill badge-info">{{dt1}}</span></h5>
+              <img
+                src="http://openweathermap.org/img/w/{{tomorrow_icon}}.png"
+                alt="image"
+              />
+                <!--<h3 align="center">location {{location}}</h3>-->
+                
+                <h5 style="text-align: center">Temperature :<span class="badge badge-pill badge-warning">{{tomorrow_temp}}F</span> </h5>
+                <h5 style="text-align: center">Weather :<span class="badge badge-pill badge-success">{{tomorrow_weather}}</span></h5>
+                <h5 style="text-align: center">Humidity :<span class="badge badge-pill badge-danger">{{tomorrow_feels_like}}%</span> </h5>
+                
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-3">
+            <div class="card" id="card">
+              <div class="card-body">
+              <h5 class="card-title"><span class="badge badge-pill badge-info">{{dt2}}</span></h5>
+                <img
+                src="http://openweathermap.org/img/w/{{aftertomorrow_icon}}.png"
+                alt="image"
+              />
+                
+                <!--<h3 align="center">location {{location}}</h3>-->
+                <h5 style="text-align: center">Temperature :<span class="badge badge-pill badge-warning">{{aftertomorrow_temp}}F</span></h5>
+                <h5 style="text-align: center">Weather :<span class="badge badge-pill badge-success">{{aftertomorrow_weather}}</span></h5>
+                <h5 style="text-align: center">Humidity :<span class="badge badge-pill badge-danger">{{aftertomorrow_feels_like}}%</span></h5>
+                
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-3">
+            <div class="card" id="card">
+              <div class="card-body">
+              <h5 class="card-title"><span class="badge badge-pill badge-info">{{dt3}}</span></h5>
+                
+                <img
+                src="http://openweathermap.org/img/w/{{fourth_icon}}.png"
+                alt="image"
+              />
+                
+                <!--<h3 align="center">location {{location}}</h3>-->
+                <h5 style="text-align: center">Temperature :<span class="badge badge-pill badge-warning">{{fourth_temp}}F</span></h5>
+                <h5 style="text-align: center">Weather :<span class="badge badge-pill badge-success">{{fourth_weather}}</span></h5>
+                <h5 style="text-align: center">Humidity :<span class="badge badge-pill badge-danger">{{fourth_feels_like}}%</span></h5>
+                
+              </div>
+            </div>
+          </div>
+      </div>
+      </div>  
+
+<br>
+<br>
+<br>
+
+{% include 'footer.html' %}
+
+
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html5>
