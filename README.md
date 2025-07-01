@@ -1,17 +1,29 @@
-# flask_weather_app
-this application is used for forecasting. used specially for gathering 5 days data.
-This application have some functionality.
+# 🌦️ Flask Weather App
 
-1,give five days forcasting.
-2,input validaiton when you enter something in input box
-3,Error handling also handle in this application
-4,we used Google map in this application
-5,Wikipedia And pictures also will show of that city which you want for forcasting
+A powerful Flask-based weather forecast application that integrates:
+- 🔍 Google Maps API for city suggestion
+- 🧠 Wikipedia API for location description
+- ☁️ Weather API for real-time forecast
 
-At the end this application has more features when you work in it.
+## 🚀 Features
 
+- 🗺️ City input with auto-suggestion
+- 📖 Location details from Wikipedia
+- 🌦️ Real-time weather updates
+- 🚫 Form validation and error handling
 
-if you have any question, please don't hesitate me.
+## 🖼️ Demo
 
+![weather-demo](https://your-screenshot-or-demo-link.com)
 
-Special Thanks for all of you
+> Want to see it live? [Coming Soon — Deployment link here]
+
+---
+
+## 🧪 How to Run Locally
+
+```bash
+git clone https://github.com/Rauf-Totakhil/flask_weather_app.git
+cd flask_weather_app
+pip install -r requirements.txt
+python app.py
